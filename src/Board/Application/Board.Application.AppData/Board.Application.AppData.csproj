@@ -14,4 +14,8 @@
     <Folder Include="Contexts\Users\Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Board.Contracts\Board.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

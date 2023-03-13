@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Infrastructure", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Infrastucture.DataAccess", "src\Board\Infrastucture\Board.Infrastucture.DataAccess\Board.Infrastucture.DataAccess.csproj", "{1C00DA91-595A-44A7-800B-682B7B1EA715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Host.Api", "src\Board\Host\Board.Host.Api\Board.Host.Api.csproj", "{46A1544F-2253-4D54-9659-5288A4389DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1C00DA91-595A-44A7-800B-682B7B1EA715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C00DA91-595A-44A7-800B-682B7B1EA715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C00DA91-595A-44A7-800B-682B7B1EA715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A1544F-2253-4D54-9659-5288A4389DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A1544F-2253-4D54-9659-5288A4389DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A1544F-2253-4D54-9659-5288A4389DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A1544F-2253-4D54-9659-5288A4389DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{081E01A7-0482-4CE4-8C0A-84DA9E2F6DEE} = {D11C6775-414E-4CD3-BF89-7FFB9E0166E6}
 		{29CF10EB-20EE-4734-A6A6-D05821777CD8} = {D6A06196-1EC9-4DA8-8D6A-DD9B54A18D38}
 		{1C00DA91-595A-44A7-800B-682B7B1EA715} = {D6A06196-1EC9-4DA8-8D6A-DD9B54A18D38}
+		{46A1544F-2253-4D54-9659-5288A4389DB9} = {5248541E-781C-4CB7-8AE5-F23F9D8490CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED2C3D4-E53B-415E-AD1B-8F0CC525D05F}
