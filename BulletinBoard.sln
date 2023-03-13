@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Domain", "src\Board\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Infrastructure", "src\Board\Infrastructure\Board.Infrastructure\Board.Infrastructure.csproj", "{29CF10EB-20EE-4734-A6A6-D05821777CD8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Infrastucture.DataAccess", "src\Board\Infrastucture\Board.Infrastucture.DataAccess\Board.Infrastucture.DataAccess.csproj", "{1C00DA91-595A-44A7-800B-682B7B1EA715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Board.Infrastructure.DataAccess", "src\Board\Infrastucture\Board.Infrastucture.DataAccess\Board.Infrastructure.DataAccess.csproj", "{1C00DA91-595A-44A7-800B-682B7B1EA715}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Host.Api", "src\Board\Host\Board.Host.Api\Board.Host.Api.csproj", "{46A1544F-2253-4D54-9659-5288A4389DB9}"
 EndProject
