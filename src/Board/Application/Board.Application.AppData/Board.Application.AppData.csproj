@@ -9,7 +9,8 @@
   <ItemGroup>
     <Folder Include="Contexts\Comments\" />
     <Folder Include="Contexts\Favorites\" />
-    <Folder Include="Contexts\Posts\" />
+    <Folder Include="Contexts\Posts\Services\" />
+    <Folder Include="Contexts\Posts\Repositories" />
     <Folder Include="Contexts\Users\Services\" />
     <Folder Include="Contexts\Users\Repositories\" />
   </ItemGroup>

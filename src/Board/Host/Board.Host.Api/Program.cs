@@ -1,4 +1,4 @@
-using Board.Application.AppData.Contexts.Users.Services;
+using Board.Application.AppData.Contexts.Posts.Services;
 using Board.Contracts.Posts;
 using Microsoft.OpenApi.Models;
 
@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen(options =>
         $"{typeof(CreatePostDto).Assembly.GetName().Name}.xml")));
     options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, "Documentation.xml")));
 });
- 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -9,7 +9,7 @@
             Контроллер для работы с объявлениями.
             </summary>
         </member>
-        <member name="M:Board.Host.Api.Controllers.PostsController.#ctor(Microsoft.Extensions.Logging.ILogger{Board.Host.Api.Controllers.PostsController},Board.Application.AppData.Contexts.Users.Services.IPostService)">
+        <member name="M:Board.Host.Api.Controllers.PostsController.#ctor(Microsoft.Extensions.Logging.ILogger{Board.Host.Api.Controllers.PostsController},Board.Application.AppData.Contexts.Posts.Services.IPostService)">
             <summary>
             Инициализирует экземпляр <see cref="T:Board.Host.Api.Controllers.PostsController"/>
             </summary>

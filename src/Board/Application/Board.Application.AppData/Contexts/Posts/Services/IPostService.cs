@@ -1,6 +1,6 @@
 ﻿using Board.Contracts.Posts;
 
-namespace Board.Application.AppData.Contexts.Users.Services;
+namespace Board.Application.AppData.Contexts.Posts.Services;
 
 /// <summary>
 /// Сервис для работы с объявлениями.
