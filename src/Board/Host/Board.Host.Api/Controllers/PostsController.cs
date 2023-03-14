@@ -1,4 +1,4 @@
-﻿using Board.Application.AppData.Contexts.Users.Services;
+﻿using Board.Application.AppData.Contexts.Posts.Services;
 using Microsoft.AspNetCore.Mvc;
 using Board.Contracts.Posts;
 using Newtonsoft.Json;
