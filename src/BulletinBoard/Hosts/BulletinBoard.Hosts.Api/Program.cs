@@ -1,4 +1,12 @@
+using BulletinBoard.Infrastructure.ComponentRegistrar;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.RegisterAppServices();
+builder.Services.RegisterRepositories();
+
+//builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -11,6 +19,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();
