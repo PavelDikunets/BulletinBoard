@@ -1,4 +1,5 @@
 using BulletinBoard.Contracts.Announcements.Requests;
+using BulletinBoard.Contracts.Announcements.Responses;
 using BulletinBoard.Domain.Entities;
 
 namespace BulletinBoard.AppServices.Contexts.Announcements.Repositories;
@@ -9,12 +10,20 @@ namespace BulletinBoard.AppServices.Contexts.Announcements.Repositories;
 public interface IAnnouncementRepository
 {
     /// <summary>
+    ///     Создает новое объявление.
+    /// </summary>
+    /// <param name="announcement">Объявление.</param>
+    /// <param name="cancellationToken">Токен отмены операции.</param>
+    /// <returns>Идентификатор созданного объявления.</returns>
+    Task<Guid> CreateAsync(Announcement announcement, CancellationToken cancellationToken);
+
+    /// <summary>
     ///     Получает объявления по фильтру.
     /// </summary>
     /// <param name="filter">Фильтр.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Коллекция объявлений.</returns>
-    Task<IReadOnlyCollection<Announcement>> GetByFilterAsync(AnnouncementFilterRequest filter,
+    Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -23,24 +32,16 @@ public interface IAnnouncementRepository
     /// <param name="announcementId">Идентификатор объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Объявление.</returns>
-    Task<Announcement> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken);
-
-    /// <summary>
-    ///     Создает новое объявление.
-    /// </summary>
-    /// <param name="newAnnouncement">Новое объявление.</param>
-    /// <param name="cancellationToken">Токен отмены операции.</param>
-    /// <returns>Объявление.</returns>
-    Task<Announcement> CreateAsync(Announcement newAnnouncement, CancellationToken cancellationToken);
+    Task<AnnouncementResponse> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет объявление.
     /// </summary>
     /// <param name="announcementId">Идентификатор объявления.</param>
-    /// <param name="updateAnnouncement">Обновленное объявление.</param>
+    /// <param name="request">Объявление с новыми данными.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Объявление.</returns>
-    Task<Announcement> UpdateAsync(Guid announcementId, Announcement updateAnnouncement,
+    Task<AnnouncementResponse> UpdateAsync(Guid announcementId, Announcement request,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -49,5 +50,5 @@ public interface IAnnouncementRepository
     /// <param name="announcementId">Идентификатор объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>True, если объявление успешно удалено, иначе false.</returns>
-    Task<bool> DeleteAsync(Guid announcementId, CancellationToken cancellationToken);
+    Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken);
 }
