@@ -1,6 +1,7 @@
 using BulletinBoard.AppServices.Contexts.Announcements.Repositories;
 using BulletinBoard.AppServices.Contexts.Announcements.Services;
 using BulletinBoard.Infrastructure.DataAccess.Contexts.Announcements.Repositories;
+using BulletinBoard.Infrastructure.DataAccess.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BulletinBoard.Infrastructure.ComponentRegistrar;
@@ -15,7 +16,8 @@ public static class ComponentRegistrar
 
     public static IServiceCollection RegisterRepositories(this IServiceCollection services)
     {
-        services.AddSingleton<IAnnouncementRepository, AnnouncementRepository>();
+        services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+        services.AddScoped(typeof(IBaseRepository<,>), typeof(BaseRepository<,>));
 
         return services;
     }
