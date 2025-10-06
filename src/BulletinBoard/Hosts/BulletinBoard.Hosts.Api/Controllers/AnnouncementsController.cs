@@ -12,33 +12,24 @@ namespace BulletinBoard.Hosts.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [ProducesResponseType(typeof(ErrorDto), StatusCodes.Status500InternalServerError)]
-public class AnnouncementsController : ControllerBase
+public class AnnouncementsController(
+    IAnnouncementService announcementService
+) : ControllerBase
 {
-    private readonly IAnnouncementService _announcementService;
-
-    /// <summary>
-    ///     Инициализирует экземпляр <see cref="AnnouncementsController" />.
-    /// </summary>
-    /// <param name="announcementService">Сервис объявлений.</param>
-    public AnnouncementsController(IAnnouncementService announcementService)
-    {
-        _announcementService = announcementService;
-    }
-
     /// <summary>
     ///     Создает новое объявление.
     /// </summary>
-    /// <param name="request">Данные для создания объявления.</param>
+    /// <param name="request">Данные для создания объявления, включая заголовок и описание.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
-    /// <returns>Новое объявление.</returns>
+    /// <returns>Идентификатор созданного объявление.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(AnnouncementResponse), StatusCodes.Status201Created)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateAnnouncementRequest request,
         CancellationToken cancellationToken)
     {
-        var response = await _announcementService.CreateAsync(request, cancellationToken);
+        var announcementId = await announcementService.CreateAsync(request, cancellationToken);
 
-        return CreatedAtRoute("GetById", new { id = response.Id }, response);
+        return CreatedAtRoute("GetById", new { id = announcementId }, announcementId);
     }
 
     /// <summary>
@@ -51,9 +42,9 @@ public class AnnouncementsController : ControllerBase
     public async Task<IActionResult> GetByFilterAsync([FromQuery] AnnouncementFilterRequest filter,
         CancellationToken cancellationToken)
     {
-        var responses = await _announcementService.GetByFilterAsync(filter, cancellationToken);
+        var announcements = await announcementService.GetByFilterAsync(filter, cancellationToken);
 
-        return Ok(responses);
+        return Ok(announcements);
     }
 
     /// <summary>
@@ -67,9 +58,9 @@ public class AnnouncementsController : ControllerBase
     [ProducesResponseType(typeof(ErrorDto), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var response = await _announcementService.GetByIdAsync(id, cancellationToken);
+        var announcement = await announcementService.GetByIdAsync(id, cancellationToken);
 
-        return Ok(response);
+        return Ok(announcement);
     }
 
     /// <summary>
@@ -85,8 +76,8 @@ public class AnnouncementsController : ControllerBase
     public async Task<IActionResult> UpdateAsync(Guid id, [FromBody] UpdateAnnouncementRequest request,
         CancellationToken cancellationToken)
     {
-        var response = await _announcementService.UpdateAsync(id, request, cancellationToken);
+        var updatedAnnouncement = await announcementService.UpdateAsync(id, request, cancellationToken);
 
-        return Ok(response);
+        return Ok(updatedAnnouncement);
     }
 }

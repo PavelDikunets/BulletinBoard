@@ -28,10 +28,10 @@ public interface IAnnouncementService
     /// <summary>
     ///     Создает новое объявление.
     /// </summary>
-    /// <param name="announcementRequest">Модель запроса создания нового объявления.</param>
+    /// <param name="announcementRequest">Модель создания объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
-    /// <returns>Модель объявления.</returns>
-    Task<AnnouncementResponse> CreateAsync(CreateAnnouncementRequest announcementRequest,
+    /// <returns>Идентификатор созданного объявления.</returns>
+    Task<Guid> CreateAsync(CreateAnnouncementRequest announcementRequest,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -50,5 +50,5 @@ public interface IAnnouncementService
     /// <param name="announcementId">Идентификатор объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>True, если объявление успешно удалено, иначе false.</returns>
-    Task<bool> DeleteAsync(Guid announcementId, CancellationToken cancellationToken);
+    Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken);
 }

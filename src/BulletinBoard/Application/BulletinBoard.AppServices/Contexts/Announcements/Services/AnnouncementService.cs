@@ -6,24 +6,15 @@ using BulletinBoard.Domain.Entities;
 namespace BulletinBoard.AppServices.Contexts.Announcements.Services;
 
 /// <inheritdoc />
-public class AnnouncementService : IAnnouncementService
+public class AnnouncementService(
+    IAnnouncementRepository announcementRepository
+) : IAnnouncementService
 {
-    private readonly IAnnouncementRepository _announcementRepository;
-
-    /// <summary>
-    ///     Инициализирует экземпляр <see cref="AnnouncementService" />.
-    /// </summary>
-    /// <param name="announcementRepository">Репозиторий объявлений.</param>
-    public AnnouncementService(IAnnouncementRepository announcementRepository)
-    {
-        _announcementRepository = announcementRepository;
-    }
-
     /// <inheritdoc />
     public async Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken)
     {
-        var announcements = await _announcementRepository.GetByFilterAsync(filter, cancellationToken);
+        var announcements = await announcementRepository.GetByFilterAsync(filter, cancellationToken);
 
         var response = announcements.Select(announcement => new AnnouncementResponse
         {
@@ -39,7 +30,7 @@ public class AnnouncementService : IAnnouncementService
     /// <inheritdoc />
     public async Task<AnnouncementResponse> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken)
     {
-        var announcement = await _announcementRepository.GetByIdAsync(announcementId, cancellationToken);
+        var announcement = await announcementRepository.GetByIdAsync(announcementId, cancellationToken);
 
         var response = new AnnouncementResponse
         {
@@ -53,7 +44,7 @@ public class AnnouncementService : IAnnouncementService
     }
 
     /// <inheritdoc />
-    public async Task<AnnouncementResponse> CreateAsync(CreateAnnouncementRequest announcementRequest,
+    public async Task<Guid> CreateAsync(CreateAnnouncementRequest announcementRequest,
         CancellationToken cancellationToken)
     {
         var announcement = new Announcement
@@ -64,17 +55,9 @@ public class AnnouncementService : IAnnouncementService
             Description = announcementRequest.Description
         };
 
-        var result = await _announcementRepository.CreateAsync(announcement, cancellationToken);
+        var result = await announcementRepository.CreateAsync(announcement, cancellationToken);
 
-        var response = new AnnouncementResponse
-        {
-            Id = result.Id,
-            Title = result.Title,
-            Description = result.Description,
-            CreatedAt = result.CreatedAt
-        };
-
-        return response;
+        return result;
     }
 
     /// <inheritdoc />
@@ -89,7 +72,7 @@ public class AnnouncementService : IAnnouncementService
         };
 
         var updatedAnnouncement =
-            await _announcementRepository.UpdateAsync(announcementId, announcement, cancellationToken);
+            await announcementRepository.UpdateAsync(announcementId, announcement, cancellationToken);
 
         var response = new AnnouncementResponse
         {
@@ -103,8 +86,8 @@ public class AnnouncementService : IAnnouncementService
     }
 
     /// <inheritdoc />
-    public async Task<bool> DeleteAsync(Guid announcementId, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken)
     {
-        return await _announcementRepository.DeleteAsync(announcementId, cancellationToken);
+        await announcementRepository.DeleteAsync(announcementId, cancellationToken);
     }
 }
