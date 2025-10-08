@@ -4,7 +4,7 @@ services:
     image: bulletin-board.hosts.api
     build:
       context: .
-      dockerfile: src/BulletinBoard/Hosts/BulletinBoard.Hosts.Api/Dockerfile
+      dockerfile: src/Hosts/BulletinBoard.Hosts.Api/Dockerfile
     ports:
       - "5001:8080"
     networks:
