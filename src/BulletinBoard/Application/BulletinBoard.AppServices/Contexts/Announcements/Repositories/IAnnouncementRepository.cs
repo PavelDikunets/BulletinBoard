@@ -23,7 +23,7 @@ public interface IAnnouncementRepository
     /// <param name="filter">Фильтр.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Коллекция объявлений.</returns>
-    Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
+    Task<IReadOnlyCollection<Announcement>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -32,16 +32,15 @@ public interface IAnnouncementRepository
     /// <param name="announcementId">Идентификатор объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Объявление.</returns>
-    Task<AnnouncementResponse> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken);
+    Task<Announcement?> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет объявление.
     /// </summary>
-    /// <param name="announcementId">Идентификатор объявления.</param>
-    /// <param name="request">Объявление с новыми данными.</param>
+    /// <param name="announcement">Объявление с новыми данными.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Объявление.</returns>
-    Task<AnnouncementResponse> UpdateAsync(Guid announcementId, Announcement request,
+    Task<Announcement> UpdateAsync(Announcement announcement,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -51,4 +50,12 @@ public interface IAnnouncementRepository
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>True, если объявление успешно удалено, иначе false.</returns>
     Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Проверяет существование объявления.
+    /// </summary>
+    /// <param name="announcementId">Идентификатор объявления</param>
+    /// <param name="cancellationToken">Токен отмены операции.</param>
+    /// <returns>True - объявление существует, в противном случае - false.</returns>
+    Task<bool> ExistsAsync(Guid announcementId, CancellationToken cancellationToken);
 }
