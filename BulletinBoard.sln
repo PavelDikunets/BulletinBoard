@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard.Infrastructure.DataAccess", "src\BulletinBoard\Infrastructure\BulletinBoard.Infrastructure.DataAccess\BulletinBoard.Infrastructure.DataAccess.csproj", "{A07D7DD1-DD1A-4B49-AB6E-95686BBC992A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard.Hosts.Migrator", "src\BulletinBoard\Hosts\BulletinBoard.Hosts.Migrator\BulletinBoard.Hosts.Migrator.csproj", "{371F984B-2877-4BF3-9058-B59300B33B20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,7 @@ Global
 		{4FA754EB-46D8-41C8-80BF-7EBC18260551} = {6728F498-2851-4013-B483-69123B2AA627}
 		{72B52988-F50D-493C-AA4F-E9960AA6C394} = {6728F498-2851-4013-B483-69123B2AA627}
 		{A07D7DD1-DD1A-4B49-AB6E-95686BBC992A} = {6728F498-2851-4013-B483-69123B2AA627}
+		{371F984B-2877-4BF3-9058-B59300B33B20} = {2960C9EC-DF03-4522-80AD-010D7A95FD10}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{40D07BAA-B36C-435A-82F8-857FEB72D664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -77,5 +80,9 @@ Global
 		{A07D7DD1-DD1A-4B49-AB6E-95686BBC992A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A07D7DD1-DD1A-4B49-AB6E-95686BBC992A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A07D7DD1-DD1A-4B49-AB6E-95686BBC992A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371F984B-2877-4BF3-9058-B59300B33B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371F984B-2877-4BF3-9058-B59300B33B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371F984B-2877-4BF3-9058-B59300B33B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371F984B-2877-4BF3-9058-B59300B33B20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
