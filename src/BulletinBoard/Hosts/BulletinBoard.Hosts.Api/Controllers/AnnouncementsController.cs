@@ -39,6 +39,7 @@ public class AnnouncementsController(
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Коллекция объявлений.</returns>
     [HttpGet("by-filter")]
+    [ProducesResponseType(typeof(IReadOnlyCollection<AnnouncementResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetByFilterAsync([FromQuery] AnnouncementFilterRequest filter,
         CancellationToken cancellationToken)
     {
@@ -79,5 +80,20 @@ public class AnnouncementsController(
         var updatedAnnouncement = await announcementService.UpdateAsync(id, request, cancellationToken);
 
         return Ok(updatedAnnouncement);
+    }
+
+    /// <summary>
+    /// Удаляет объявление.
+    /// </summary>
+    /// <param name="id">Идентификатор объявления.</param>
+    /// <param name="cancellationToken">Токен отмены операции.</param>
+    /// <returns></returns>
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorDto), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
+    {
+        await announcementService.DeleteAsync(id, cancellationToken);
+        return NoContent();
     }
 }
