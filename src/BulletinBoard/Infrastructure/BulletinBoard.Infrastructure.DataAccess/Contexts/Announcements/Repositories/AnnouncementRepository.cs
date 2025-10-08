@@ -1,7 +1,5 @@
 using BulletinBoard.AppServices.Contexts.Announcements.Repositories;
-using BulletinBoard.AppServices.Exceptions;
 using BulletinBoard.Contracts.Announcements.Requests;
-using BulletinBoard.Contracts.Announcements.Responses;
 using BulletinBoard.Domain.Entities;
 using BulletinBoard.Infrastructure.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -21,63 +19,38 @@ public class AnnouncementRepository(
     }
 
     /// <inheritdoc />
-    public async Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
+    public async Task<IReadOnlyCollection<Announcement>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken)
     {
-        var announcements = repository.GetAll();
+        var query = repository.GetAll().AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(filter.Title))
-            announcements = announcements.Where(a =>
-                a.Title.Contains(filter.Title, StringComparison.InvariantCultureIgnoreCase));
+            query = query.Where(a => a.Title.Contains(filter.Title));
 
-        var response = await announcements
-            .Select(a => new AnnouncementResponse
-            {
-                Id = a.Id,
-                Title = a.Title,
-                Description = a.Description,
-                CreatedAt = a.CreatedAt
-            })
-            .ToListAsync(cancellationToken);
-        return response;
+        return await query.ToListAsync(cancellationToken);
     }
 
-    public async Task<AnnouncementResponse> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken)
+    public async Task<Announcement?> GetByIdAsync(Guid announcementId, CancellationToken cancellationToken)
     {
-        var announcement = await repository.GetByIdAsync(announcementId, cancellationToken);
-
-        if (announcement == null) throw new NotFoundException(announcementId.ToString());
-
-        var response = new AnnouncementResponse
-        {
-            Id = announcement.Id,
-            Title = announcement.Title,
-            Description = announcement.Description,
-            CreatedAt = announcement.CreatedAt
-        };
-        return response;
+        return await repository.GetByIdAsync(announcementId, cancellationToken);
     }
 
     /// <inheritdoc />
-    public async Task<AnnouncementResponse> UpdateAsync(Guid announcementId, Announcement request,
-        CancellationToken cancellationToken)
+    public async Task<Announcement> UpdateAsync(Announcement announcement, CancellationToken cancellationToken)
     {
-        var announcement = await repository.GetByIdAsync(announcementId, cancellationToken);
-
-        if (announcement is null) throw new NotFoundException(announcementId.ToString());
-
-        announcement.Title = request.Title;
-        announcement.Description = request.Description;
-
         await repository.UpdateAsync(announcement, cancellationToken);
-
-        return await GetByIdAsync(announcementId, cancellationToken) ??
-               throw new NotFoundException(announcementId.ToString());
+        return announcement;
     }
 
     /// <inheritdoc />
     public async Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken)
     {
         await repository.DeleteAsync(announcementId, cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<bool> ExistsAsync(Guid announcementId, CancellationToken cancellationToken)
+    {
+        return await repository.GetAll().AnyAsync(x => x.Id == announcementId, cancellationToken);
     }
 }
