@@ -54,14 +54,14 @@ public class ExceptionHandlingMiddleware(
             NotFoundException e => (StatusCodes.Status404NotFound, new ErrorDto
             {
                 StatusCode = StatusCodes.Status404NotFound,
-                Message = $"Сущность с идентификатором {e.Id} не была найдена.",
+                Message = $"Сущность с идентификатором {e.Id} не найдена",
                 TraceId = context.TraceIdentifier
             }),
 
             _ => (StatusCodes.Status500InternalServerError, new ErrorDto
             {
                 StatusCode = StatusCodes.Status500InternalServerError,
-                Message = "Что-то пошло не так.",
+                Message = "Что-то пошло не так",
                 TraceId = context.TraceIdentifier
             })
         };

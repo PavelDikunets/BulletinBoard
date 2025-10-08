@@ -31,14 +31,13 @@ public interface IAnnouncementService
     /// <param name="announcementRequest">Модель создания объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Идентификатор созданного объявления.</returns>
-    Task<Guid> CreateAsync(CreateAnnouncementRequest announcementRequest,
-        CancellationToken cancellationToken);
+    Task<Guid> CreateAsync(CreateAnnouncementRequest announcementRequest, CancellationToken cancellationToken);
 
     /// <summary>
     ///     Обновляет объявление.
     /// </summary>
     /// <param name="announcementId">Идентификатор объявления.</param>
-    /// <param name="announcementRequest">Модель запроса обновления объявления.</param>
+    /// <param name="announcementRequest">Модель обновления объявления.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Модель объявления.</returns>
     Task<AnnouncementResponse> UpdateAsync(Guid announcementId, UpdateAnnouncementRequest announcementRequest,
