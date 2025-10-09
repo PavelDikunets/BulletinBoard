@@ -6,7 +6,7 @@ using BulletinBoard.Domain.Entities;
 namespace BulletinBoard.Infrastructure.ComponentRegistrar.MapProfiles;
 
 /// <summary>
-/// Профиль маппера для объявления.
+///     Профиль маппера для объявления.
 /// </summary>
 public class AnnouncementProfile : Profile
 {
@@ -17,5 +17,6 @@ public class AnnouncementProfile : Profile
         CreateMap<UpdateAnnouncementRequest, Announcement>(MemberList.None);
 
         CreateMap<Announcement, AnnouncementResponse>(MemberList.None);
+        CreateMap<Announcement, AnnouncementShortResponse>(MemberList.None);
     }
 }

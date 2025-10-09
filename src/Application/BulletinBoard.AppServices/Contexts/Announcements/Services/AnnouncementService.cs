@@ -14,11 +14,11 @@ public class AnnouncementService(
 ) : IAnnouncementService
 {
     /// <inheritdoc />
-    public async Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
+    public async Task<IReadOnlyCollection<AnnouncementShortResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken)
     {
         var announcements = await announcementRepository.GetByFilterAsync(filter, cancellationToken);
-        return mapper.Map<IReadOnlyCollection<AnnouncementResponse>>(announcements);
+        return mapper.Map<IReadOnlyCollection<AnnouncementShortResponse>>(announcements);
     }
 
     /// <inheritdoc />
@@ -33,19 +33,25 @@ public class AnnouncementService(
         CancellationToken cancellationToken)
     {
         var announcement = mapper.Map<CreateAnnouncementRequest, Announcement>(request);
+
         announcement.CreatedAt = DateTime.UtcNow;
+
         return await announcementRepository.CreateAsync(announcement, cancellationToken);
     }
 
     /// <inheritdoc />
-    public async Task<AnnouncementResponse> UpdateAsync(Guid announcementId, UpdateAnnouncementRequest request, CancellationToken cancellationToken)
+    public async Task<AnnouncementResponse> UpdateAsync(Guid announcementId, UpdateAnnouncementRequest request,
+        CancellationToken cancellationToken)
     {
         var announcement = await GetAnnouncementOrThrowAsync(announcementId, cancellationToken);
+
+        announcement.UpdatedAt = DateTime.UtcNow;
+
         mapper.Map(request, announcement);
         await announcementRepository.UpdateAsync(announcement, cancellationToken);
         return mapper.Map<AnnouncementResponse>(announcement);
     }
-    
+
     /// <inheritdoc />
     public async Task DeleteAsync(Guid announcementId, CancellationToken cancellationToken)
     {
@@ -53,10 +59,10 @@ public class AnnouncementService(
         if (!exists) throw new NotFoundException(announcementId.ToString());
         await announcementRepository.DeleteAsync(announcementId, cancellationToken);
     }
-    
-    
-    
-    private async Task<Announcement> GetAnnouncementOrThrowAsync(Guid announcementId, CancellationToken cancellationToken)
+
+
+    private async Task<Announcement> GetAnnouncementOrThrowAsync(Guid announcementId,
+        CancellationToken cancellationToken)
     {
         var announcement = await announcementRepository.GetByIdAsync(announcementId, cancellationToken);
         return announcement ?? throw new NotFoundException(announcementId.ToString());

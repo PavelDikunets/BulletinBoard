@@ -1,3 +1,4 @@
+using BulletinBoard.Contracts.Announcements.Requests;
 using BulletinBoard.Contracts.Announcements.Responses;
 using BulletinBoard.Infrastructure.ComponentRegistrar;
 using BulletinBoard.Infrastructure.DataAccess;
@@ -39,7 +40,7 @@ builder.Services.AddSwaggerGen(options =>
     var assembliesWithXmlDocs = new[]
     {
         typeof(Program).Assembly,
-        typeof(AnnouncementResponse).Assembly
+        typeof(AnnouncementResponse).Assembly,
     };
     foreach (var assembly in assembliesWithXmlDocs)
     {

@@ -16,8 +16,13 @@ public class AnnouncementConfiguration : IEntityTypeConfiguration<Announcement>
     public void Configure(EntityTypeBuilder<Announcement> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Title).HasMaxLength(128).IsRequired();
-        builder.Property(x => x.Description).HasMaxLength(128).IsRequired();
+        builder.Property(x => x.Title).HasMaxLength(64).IsRequired();
+        builder.Property(x => x.Image).HasMaxLength(512).IsRequired(false);
+        builder.Property(x => x.Description).HasMaxLength(1024).IsRequired();
+        builder.Property(x => x.Complectation).HasMaxLength(1024).IsRequired(false);
+        builder.Property(x => x.Price).HasPrecision(18, 2).IsRequired();
+        builder.Property(x => x.Condition).IsRequired();
+        builder.Property(x => x.UpdatedAt).IsRequired();
 
         builder.HasIndex(a => new { a.CreatedAt, a.Id }).IsUnique();
     }

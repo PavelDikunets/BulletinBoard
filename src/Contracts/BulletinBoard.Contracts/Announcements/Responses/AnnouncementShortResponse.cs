@@ -1,9 +1,9 @@
 namespace BulletinBoard.Contracts.Announcements.Responses;
 
 /// <summary>
-///     Модель объявления.
+///     Краткая модель объявления.
 /// </summary>
-public class AnnouncementResponse
+public class AnnouncementShortResponse
 {
     /// <summary>
     ///     Идентификатор.
@@ -16,11 +16,6 @@ public class AnnouncementResponse
     public string Title { get; set; }
 
     /// <summary>
-    ///     Описание.
-    /// </summary>
-    public string Description { get; set; }
-
-    /// <summary>
     ///     Цена.
     /// </summary>
     public decimal Price { get; set; }
@@ -31,22 +26,7 @@ public class AnnouncementResponse
     public string? Image { get; set; }
 
     /// <summary>
-    ///     Комплектация.
-    /// </summary>
-    public string? Complectation { get; set; }
-
-    /// <summary>
-    ///     Состояние.
-    /// </summary>
-    public string Condition { get; set; }
-
-    /// <summary>
     ///     Дата создания.
     /// </summary>
     public DateTime CreatedAt { get; set; }
-
-    /// <summary>
-    ///     Дата последнего обновления.
-    /// </summary>
-    public DateTime UpdatedAt { get; set; }
 }

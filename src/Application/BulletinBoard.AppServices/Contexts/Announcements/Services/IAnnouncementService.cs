@@ -14,7 +14,7 @@ public interface IAnnouncementService
     /// <param name="filter">Фильтр.</param>
     /// <param name="cancellationToken">Токен отмены операции.</param>
     /// <returns>Коллекция объявлений.</returns>
-    Task<IReadOnlyCollection<AnnouncementResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
+    Task<IReadOnlyCollection<AnnouncementShortResponse>> GetByFilterAsync(AnnouncementFilterRequest filter,
         CancellationToken cancellationToken);
 
     /// <summary>
